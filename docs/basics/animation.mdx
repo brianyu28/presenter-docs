@@ -1,0 +1,32 @@
+---
+sidebar_position: 2
+---
+
+import SimpleAnimation from "@site/src/demos/SimpleAnimation";
+import ChainAnimation from "@site/src/demos/ChainAnimation";
+
+# Animation
+
+Presenter.js is designed to make it easy to create both simple and complex animations.
+
+An **animation** in Presenter.js specifies how an object's properties should change.
+
+To create an animation, import the `Animate` constructor from `presenter`.
+Call `Animate` and specify the object to animate and the new property values for the object.
+Add the animation to an array of `animations` for the slide.
+
+<SimpleAnimation />
+
+In the above demo, use the right and left buttons to go forward and back between animations.
+In a full-screen presentation, use the spacebar or right arrow key to advance to the next animation;
+use the left arrow key to go back.
+
+## Chaining Animations
+
+Specifying multiple animations in the `animations` array to create a sequence of animations.
+Each time you advance to the next animation, the next animation in the array will play.
+
+The `animations` array can also include a sub-array of animations in place of a single animation.
+If so, all the animations in that sub-array will play together when the animation starts.
+
+<ChainAnimation />

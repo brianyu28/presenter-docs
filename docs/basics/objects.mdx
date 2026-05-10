@@ -1,0 +1,58 @@
+---
+sidebar_position: 1
+---
+
+import OverlappingShapes from "@site/src/demos/OverlappingShapes";
+import ShapeLoop from "@site/src/demos/ShapeLoop";
+
+# Objects
+
+Presenter.js includes several built-in objects that can be added to a slide.
+This includes shapes like `Rectangle`, `Circle`, and `Polygon`; paths like `Line`,
+`Path`, and `Arrow`; and `Text` for text elements.
+
+Different objects support different properties, but some of the most common properties
+supported by objects are:
+
+- `x` and `y` for specifying where on the slide an object should render
+- `anchor` for specifying how the object should be positioned relative to its coordinates
+- `color`, `strokeColor`, and/or `fillColor` for the object's color
+- `width` and `height` for specifying size
+- `opacity` for rendering an object with transparency
+
+A slide specifies an array of `objects` to render. If multiple objects are specified, objects layer on top of each other.
+
+To create an object, import its constructor from `presenter`. Then, call the constructor with the properties you'd like to specify. Add the object to the slide's `objects` array to add it to the slide.
+
+<OverlappingShapes />
+
+Since presentations can have arbitrary JavaScript, objects can also be created dynamically in a function or loop.
+
+<ShapeLoop />
+
+## Position and Anchor
+
+Most objects support `x` and `y` properties for specifying position.
+The `anchor` property positions an object relative to its `x` and `y` coordinates.
+
+Some common `Anchor` values:
+
+- `Anchor.TOP_LEFT` means: put the top-left corner of the element at `(x, y)`
+- `Anchor.LEFT` means: put the middle of the left edge of the element at `(x, y)`
+- `Anchor.CENTER` means: put the center of the element at `(x, y)`
+- `Anchor.BOTTOM_RIGHT` means: put the bottom-right corner of the element at `(x, y)`
+
+As you might expect, `Anchor.TOP`, `Anchor.TOP_RIGHT`, `Anchor.RIGHT`, `Anchor.BOTTOM_LEFT`, and `Anchor.BOTTOM` are also supported.
+
+## Color
+
+Most objects support `color`, `strokeColor`, and/or `fillColor` properties.
+These can be set to a Presenter.js `Color` object, which specifies a RGB (red/green/blue) color value,
+where each color channel takes on values from 0 to 255.
+
+Presenter.js comes with a few default colors: `Color.WHITE`, `Color.BLACK`, `Color.RED`, `Color.BLUE`, and `Color.GREEN`.
+
+Specify a custom color using one of the following formats:
+
+- `Color(10, 20, 30)` to specify red, green, and blue values.
+- `Color("#aabbcc")` to specify a color as a hex string.

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <filter id="shadow" bx:pinned="true">
+      <title>Drop Shadow</title>
+      <feDropShadow result="drop-shadow-0" in="SourceGraphic" style="flood-opacity: 0.3;" stdDeviation="10" dx="0" dy="10"/>
+    </filter>
+    <bx:guide x="-10" y="100" angle="90"/>
+    <bx:guide x="100" y="-10" angle="0"/>
+    <bx:guide x="924" y="-10" angle="0"/>
+    <bx:guide x="-10" y="924" angle="90"/>
+    <clipPath id="clip-0">
+      <path style="stroke-width: 3px; fill: rgb(255, 255, 255);" d="M 100 724 L 100 300 C 100 185.001 170 99.995 300.026 100 L 724 99.995 C 854 100 924 185.001 924 300 L 924 724 C 924 839.001 854 923.995 724 924 L 300.026 924 C 170 924 100 839.001 100 724 Z">
+        <title>Icon Mask</title>
+      </path>
+    </clipPath>
+    <symbol id="symbol-0" viewBox="0 0 1024 1024" bx:pinned="true">
+      <title>App Icon Guides</title>
+      <g style="" transform="matrix(1, 0, 0, 1, 0, 0)">
+        <title>App Icon Guides</title>
+      </g>
+    </symbol>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="512" y1="99.995" x2="512" y2="924" id="gradient-0" gradientTransform="matrix(0.882377, 0.470542, -0.435383, 0.816444, 279.313335, -133.404593)">
+      <stop offset="0" style="stop-color: rgb(78, 80, 91);"/>
+      <stop offset="1" style="stop-color: rgb(57, 59, 67);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="481.57" y1="229.813" x2="481.57" y2="638.882" id="gradient-1" gradientTransform="matrix(0.569418, 0.468073, -0.501716, 0.610345, 251.540529, -165.770874)">
+      <stop offset="0" style="stop-color: rgb(59, 59, 59);"/>
+      <stop offset="1" style="stop-color: rgb(22, 22, 22);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="564.968" y1="367.896" x2="564.968" y2="776.965" id="gradient-2" gradientTransform="matrix(0.594758, 0.435421, -0.418666, 0.571877, 308.038435, -161.088911)">
+      <stop offset="0" style="stop-color: rgb(162, 185, 250);"/>
+      <stop offset="1" style="stop-color: rgb(52, 129, 255);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="824.794" y1="305.18" x2="824.794" y2="718.82" id="gradient-4" gradientTransform="matrix(0.788093, 0, 0, 0.90541, 169.052711, 48.430557)">
+      <stop offset="0" style="stop-color: rgb(255, 255, 255);"/>
+      <stop offset="1" style="stop-color: rgb(204, 204, 204);"/>
+    </linearGradient>
+    <bx:export>
+      <bx:file format="png"/>
+    </bx:export>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="824.794" y1="305.18" x2="824.794" y2="718.82" id="gradient-3" gradientTransform="matrix(-0.788093, 0, 0, 0.90541, 854.946358, 48.430534)">
+      <stop offset="0" style="stop-color: rgb(255, 255, 255);"/>
+      <stop offset="1" style="stop-color: rgb(204, 204, 204);"/>
+    </linearGradient>
+  </defs>
+  <g style="filter: url(#shadow);">
+    <title>App Icon (w/ Shadow)</title>
+    <g style="clip-path: url(#clip-0);">
+      <title>Background (Masked)</title>
+      <path style="stroke-width: 3px; fill: url(&quot;#gradient-0&quot;);" d="M 100 724 L 100 300 C 100 185.001 170 99.995 300.026 100 L 724 99.995 C 854 100 924 185.001 924 300 L 924 724 C 924 839.001 854 923.995 724 924 L 300.026 924 C 170 924 100 839.001 100 724 Z">
+        <title>Icon Shape</title>
+      </path>
+    </g>
+  </g>
+  <use width="1024" height="1024" transform="matrix(1, 0, 0, 1, 0.0000010000005659094313, 0.0000010000005659094313)" style="pointer-events: none;" href="#symbol-0">
+    <title>App Icon Guides</title>
+  </use>
+  <rect style="fill: url(&quot;#gradient-1&quot;); transform-box: fill-box; transform-origin: 50% 50%;" x="142.289" y="169.397" width="425.362" height="301.527" rx="10" ry="10" transform="matrix(0.990268, 0.139173, -0.139173, 0.990268, 150.553114, 178.159498)"/>
+  <rect style="fill: url(&quot;#gradient-2&quot;); transform-box: fill-box; transform-origin: 50% 50%;" x="203.761" y="271.179" width="425.362" height="301.527" rx="10" ry="10" transform="matrix(0.990268, -0.139173, 0.139173, 0.990268, 102.035489, 103.737469)"/>
+  <path d="M 759.024 324.744 L 759.024 366.779 C 769.116 366.779 776.988 368.405 782.642 371.653 C 788.296 374.901 790.737 381.366 789.961 391.047 L 784.805 447.416 C 783.474 461.683 784.832 473.212 788.88 482 C 792.928 490.789 799.08 497.509 807.34 502.16 C 815.602 506.809 825.332 510.089 836.53 511.999 C 824.667 514.037 814.633 517.349 806.427 521.936 C 798.223 526.522 792.234 533.148 788.464 541.808 C 784.695 550.471 783.474 562.063 784.805 576.585 L 789.961 632.953 C 790.737 642.636 788.296 649.1 782.642 652.348 C 776.988 655.597 769.116 657.22 759.024 657.22 L 759.024 699.257 C 789.628 699.257 811.113 693.939 823.475 683.304 C 835.838 672.665 840.855 654.481 838.527 628.75 L 833.536 574.102 C 832.65 564.42 834.063 556.84 837.778 551.362 C 841.492 545.885 846.954 542.032 854.161 539.802 C 861.367 537.574 869.685 536.458 879.109 536.458 L 879.109 487.542 C 869.796 487.542 861.534 486.429 854.328 484.199 C 847.121 481.97 841.631 478.116 837.861 472.637 C 834.092 467.161 832.65 459.582 833.536 449.899 L 838.527 395.633 C 840.965 369.391 835.976 351.016 823.557 340.507 C 811.139 329.996 789.628 324.744 759.024 324.744 Z" style="text-wrap-mode: nowrap; fill: url(&quot;#gradient-4&quot;); transform-origin: 819.067px 512px;"/>
+  <path d="M 264.976 324.744 L 264.976 366.779 C 254.884 366.779 247.012 368.405 241.358 371.653 C 235.704 374.901 233.263 381.366 234.039 391.047 L 239.195 447.416 C 240.526 461.683 239.168 473.212 235.12 482 C 231.072 490.789 224.92 497.509 216.66 502.16 C 208.398 506.809 198.668 510.089 187.47 511.999 C 199.333 514.037 209.367 517.349 217.573 521.936 C 225.777 526.522 231.766 533.148 235.536 541.808 C 239.305 550.471 240.526 562.063 239.195 576.585 L 234.039 632.953 C 233.263 642.636 235.704 649.1 241.358 652.348 C 247.012 655.597 254.884 657.22 264.976 657.22 L 264.976 699.257 C 234.372 699.257 212.887 693.939 200.525 683.304 C 188.162 672.665 183.145 654.481 185.473 628.75 L 190.464 574.102 C 191.35 564.42 189.937 556.84 186.222 551.362 C 182.508 545.885 177.046 542.032 169.839 539.802 C 162.633 537.574 154.315 536.458 144.891 536.458 L 144.891 487.542 C 154.204 487.542 162.466 486.429 169.672 484.199 C 176.879 481.97 182.369 478.116 186.139 472.637 C 189.908 467.161 191.35 459.582 190.464 449.899 L 185.473 395.633 C 183.035 369.391 188.024 351.016 200.443 340.507 C 212.861 329.996 234.372 324.744 264.976 324.744 Z" style="text-wrap-mode: nowrap; fill: url(&quot;#gradient-3&quot;); transform-origin: 204.933px 512px;"/>
+</svg>
