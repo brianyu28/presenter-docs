@@ -133,7 +133,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Brian Yu`,
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://brianyu.me" target="_blank" style="color: inherit; text-decoration: underline;">Brian Yu</a>`,
     },
     prism: {
       theme: prismThemes.github,

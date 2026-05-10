@@ -190,7 +190,7 @@ export default function HomepageFeatures(): ReactNode {
           <h2>Animate</h2>
           <p>
             Presenter.js makes it easy to create beautiful animations. Animate
-            any object property, chain animations together,
+            any object property and chain animations together.
           </p>
           <PresenterDemo slide={animateSlide} code={animateCode} showControls />
         </div>
