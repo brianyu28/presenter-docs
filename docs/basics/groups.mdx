@@ -1,0 +1,42 @@
+---
+sidebar_position: 4
+---
+
+import GroupAnimation from "@site/src/demos/GroupAnimation";
+
+# Groups
+
+A `Group` collects objects into one coordinate system. Its children use local
+coordinates relative to the group's top-left corner, and the group can then be
+positioned, scaled, rotated, skewed, or faded as one object.
+
+```typescript
+const card = Group([background, title, icon], {
+  x: 1920,
+  y: 1080,
+  width: 1200,
+  height: 700,
+  anchor: Anchor.CENTER,
+});
+```
+
+Always set the group's `width` and `height` when positioning it. Presenter.js
+uses those dimensions to calculate anchors and transformations. The dimensions
+do not automatically come from the children.
+
+Add only the group to the slide's top-level `objects` array; its children render
+as part of the group. Keep references to the children if you also want to
+animate them independently.
+
+<GroupAnimation />
+
+Useful group properties include:
+
+- `x`, `y`, and `anchor` for positioning
+- `scale` for sizing (or `scaleX`, and `scaleY` for sizing in just one dimension)
+- `rotation` for degrees of rotation
+- `skewX` and `skewY` for applying a skew transform to the group
+- `opacity` for fading the group and all descendants
+
+When debugging a group's layout and animations, it can be helpful to set the
+group's `previewColor` to see the group's bounds.

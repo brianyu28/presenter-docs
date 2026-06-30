@@ -1,0 +1,33 @@
+---
+sidebar_position: 4
+---
+
+import GridLayout from "@site/src/demos/GridLayout";
+
+# Grid
+
+`Grid` lays objects out in rows and columns and returns a backing `Group` that
+can be positioned or animated as one object.
+
+<GridLayout />
+
+Set `rows`, `cols`, the cell `width` and `height`, and optional `gapX` and
+`gapY`. The `objects(row, col)` callback creates the object for each cell; return
+`null` to leave a cell empty.
+
+```typescript
+const { grid, objects } = Grid({
+  rows: 3,
+  cols: 4,
+  width: 600,
+  height: 300,
+  objects: (row, col) => createCard(row, col),
+});
+```
+
+Add `grid` to the slide. The two-dimensional `objects` array contains the
+original object for each cell, which is useful for animating individual cells
+later.
+
+`width` and `height` may also be functions of `(row, col)` when cell dimensions
+vary. Pass additional backing-group properties through `groupProps`.

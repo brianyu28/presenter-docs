@@ -1,0 +1,26 @@
+---
+sidebar_position: 6
+---
+
+import SpotlightFocus from "@site/src/demos/SpotlightFocus";
+
+# Spotlight
+
+`Spotlight` dims the full slide except for one rectangular focus region. It is
+useful for walking through a diagram, interface, or sequence one area at a time.
+
+<SpotlightFocus />
+
+Set the clear region with `x`, `y`, `width`, `height`, and `anchor`.
+`cornerRadius` rounds its corners. The alpha channel of `color` determines how
+strongly the rest of the slide is dimmed:
+
+```typescript
+Spotlight({
+  color: Color(0, 0, 0, 0.75),
+});
+```
+
+Place the spotlight after the content it should dim in the slide's `objects`
+array. Animate its position and dimensions to move focus between targets, or
+animate `opacity` to reveal and dismiss the entire effect.

@@ -60,7 +60,7 @@ const rect1 = Rectangle({
 const text1 = Text("Step 1", {
   fontSize: 200,
   x: 400,
-  y: 180,
+  y: 200,
   anchor: Anchor.CENTER,
 });
 
@@ -83,7 +83,7 @@ const rect2 = Rectangle({
 const text2 = Text("Step 2", {
   fontSize: 200,
   x: 400,
-  y: 180,
+  y: 200,
   anchor: Anchor.CENTER,
 });
 

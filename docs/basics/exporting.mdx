@@ -1,0 +1,89 @@
+---
+sidebar_position: 6
+---
+
+# Exporting
+
+Presenter.js includes Node.js renderers for exporting presentations. Import
+them from `presenter/export` and run them in a Node script rather than in the
+browser.
+
+## Key builds
+
+Typically when exporting a presentation, the intent is to capture meaningfully
+different slide states, not necessarily every single animation. By default, only
+the final state of each slide is considered "key", so only the final state of
+each slide shows up in exported images or PDFs.
+
+You can customize for any particular slide which builds are "key" and will
+therefore be included in exports.
+
+```typescript
+const slide = Slide({
+  isStartKey: true,
+  isEndKey: false,
+  objects: [chart],
+  animations: [
+    FadeIn(chart),
+    Animate(chart, { scale: 2 }, { isKey: true }),
+    FadeOut(chart),
+  ],
+});
+```
+
+- `isStartKey` includes build 0, before any animations.
+- `isEndKey` includes the final build and defaults to `true`.
+- `isKey: true` on an animation includes the state after that build.
+- `isAllKey` on a slide treats every build as a key build.
+
+## Exporting Images
+
+`ImageRenderer` writes one image for each key build:
+
+```typescript
+import { ImageRenderer } from "presenter/export";
+import { presentation } from "./presentation";
+
+await new ImageRenderer({
+  presentation,
+  imageFormat: "png",
+  resourcePathPrefix: process.cwd(),
+}).save("dist/images");
+```
+
+`imageFormat` can be `"png"`, `"jpeg"`, `"webp"`, or `"svg"`. Specify a
+`resourcePathPrefix` when image resources in the presentation are relative to a
+project directory.
+
+For frame-by-frame output, set `isAnimatedExport: true` and configure
+`framesPerSecond` and `animationHoldFrames`.
+
+## Exporting to PDF
+
+`PDFRenderer` writes every key build as a page of a PDF document:
+
+```typescript
+import { PDFRenderer } from "presenter/export";
+
+await new PDFRenderer({
+  presentation,
+  resourcePathPrefix: process.cwd(),
+}).save("dist/slides.pdf");
+```
+
+## Exporting Presenter Notes
+
+`NotesRenderer` creates slide images and a [Typst document](https://typst.app/)
+containing the speaker notes associated with each key build:
+
+```typescript
+import { NotesRenderer } from "presenter/export";
+
+await new NotesRenderer({
+  presentation,
+  resourcePathPrefix: process.cwd(),
+}).save("dist/notes");
+```
+
+The output directory contains an `images` folder and `notes.typ`. Compile the
+Typst file to produce the final notes PDF.

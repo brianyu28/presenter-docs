@@ -1,5 +1,5 @@
 import { Color, Rectangle, Slide } from "presenter";
-import PresenterDemo from "../components/PresenterDemo";
+import PresenterExample from "../components/PresenterExample";
 
 const rectangles = [];
 for (let i = 0; i < 6; i++) {
@@ -40,12 +40,5 @@ const slide = Slide({
 `;
 
 export default function ShapeLoop() {
-  return (
-    <div style={{ marginBottom: "1em" }}>
-      <div style={{ marginBottom: "1em" }}>
-        <PresenterDemo code={code} />
-      </div>
-      <PresenterDemo slide={slide} />
-    </div>
-  );
+  return <PresenterExample code={code} slide={slide} />;
 }

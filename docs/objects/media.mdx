@@ -1,0 +1,39 @@
+---
+sidebar_position: 3
+---
+
+import MediaDemo from "@site/src/demos/Media";
+
+# Media
+
+Use `Image` for raster image resources and `SVG` for inline vector markup.
+
+<MediaDemo />
+
+## Image
+
+Register image URLs on the presentation, then refer to them by `imageId`:
+
+```typescript
+const presentation = Presentation({
+  resources: {
+    images: {
+      portrait: "/images/portrait.jpg",
+    },
+  },
+  slides: [slide],
+});
+```
+
+Set `x`, `y`, `width`, `height`, and `anchor` on the `Image`. `cornerRadius`
+clips rounded corners. Set `smooth: false` when enlarging pixel art that should
+keep crisp edges.
+
+## SVG
+
+Pass complete SVG markup to the `svg` property, then position it with `x`, `y`,
+`width`, `height`, and `anchor`. SVG is resolution-independent, making it a
+good fit for icons, diagrams, and generated artwork.
+
+For external SVG files that should be loaded as resources, register the file
+under `resources.images` and use `Image`.

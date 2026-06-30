@@ -1,0 +1,22 @@
+---
+sidebar_position: 5
+---
+
+import MaskClipping from "@site/src/demos/MaskClipping";
+
+# Mask
+
+A `Mask` clips its child objects to a rectangular region. Content inside the
+region is visible; content outside it is hidden.
+
+<MaskClipping />
+
+The mask's `x`, `y`, `width`, `height`, and `anchor` define the clipping
+rectangle. Child coordinates remain in slide space—they are not made relative
+to the mask.
+
+Add the mask to the slide's `objects` array instead of adding its children
+separately. You can still keep and animate each child's original reference.
+
+Set `preview: true` while developing to draw the mask boundary, then remove it
+for the final presentation.

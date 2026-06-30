@@ -1,0 +1,83 @@
+---
+sidebar_position: 5
+---
+
+# Presenting
+
+## Presenting in the browser
+
+Presenter.js supports rendering presentations in different environments. The
+most common use case is rendering a presentation in the browser, using an HTML
+`canvas` element.
+
+`BrowserCanvasRenderer` runs a presentation in the browser:
+
+```typescript
+import { BrowserCanvasRenderer } from "presenter";
+import { presentation } from "./presentation";
+
+document.addEventListener("DOMContentLoaded", () => {
+  new BrowserCanvasRenderer({ presentation }).present();
+});
+```
+
+By default, `BrowserCanvasRenderer` creates a full-screen canvas and uses the
+entire browser window for the presentation. You can also provide an `element`
+property to the constructor to render the presentation in a specific HTML
+element.
+
+## Navigation
+
+During a presentation:
+
+- Press space or the right arrow to advance one build.
+- Press the left arrow to go back one build.
+- Hold Shift while moving forward or back to move forward or back between slides
+  while skipping intermediate builds.
+- Press the backtick key (`` ` ``) to open or close the slide navigator.
+
+The navigator runs in a separate window. It shows the slide list, current
+build, next build, and speaker notes. Click a slide to jump to it, or click the
+next preview to advance.
+
+## Navigation shortcuts
+
+Use `shortcut` on a slide to create a memorable jump target:
+
+```typescript
+const DemoSlide = Slide({
+  title: "Live demo",
+  shortcut: ["demo"],
+  objects: [title],
+});
+```
+
+Press `g`, then type the shortcut name (in this case, `demo`), and then press
+Enter to jump directly to the slide. Shortcuts can also be assigned to
+individual animations.
+
+Numeric commands are built in: `g`, followed by a slide number, then Enter jumps
+to that slide. Presenter.js also provides some other built-in shortcuts: `s` for
+the presentation start, `c` for the current slide's first build, `e` for the end
+of the presentation, and `b` to return to the previous slide after a shortcut
+jump.
+
+## Speaker notes
+
+Set `notes` on a slide for its initial build, or set `notes` on an animation for
+a specific build:
+
+```typescript
+const IntroSlide = Slide({
+  title: "Introduction",
+  notes: "Welcome the audience and introduce the main topics.",
+  objects: [title],
+  animations: [
+    FadeIn(question, {
+      notes: "Pause here and ask for a show of hands.",
+    }),
+  ],
+});
+```
+
+Speaker notes are shown to the presenter in the presenter view.

@@ -1,5 +1,5 @@
 import { Anchor, Animate, Color, Rectangle, Slide } from "presenter";
-import PresenterDemo from "../components/PresenterDemo";
+import PresenterExample from "../components/PresenterExample";
 import { scaleY } from "../utils/size";
 
 const rectangle = Rectangle({
@@ -33,12 +33,5 @@ const slide = Slide({
 `;
 
 export default function SimpleAnimation() {
-  return (
-    <div style={{ marginBottom: "1em" }}>
-      <div style={{ marginBottom: "1em" }}>
-        <PresenterDemo code={code} />
-      </div>
-      <PresenterDemo slide={slide} showControls />
-    </div>
-  );
+  return <PresenterExample code={code} slide={slide} showControls />;
 }

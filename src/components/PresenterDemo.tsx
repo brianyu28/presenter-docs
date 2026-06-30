@@ -20,6 +20,7 @@ import styles from "./PresenterDemo.module.css";
 interface PresenterDemoProps {
   readonly slide?: PresenterSlide;
   readonly backgroundColor?: Color;
+  readonly images?: Readonly<Record<string, string>>;
   readonly code?: string;
   readonly showControls?: boolean;
   readonly slideWidthPercent?: number;
@@ -27,9 +28,13 @@ interface PresenterDemoProps {
   readonly codeHeight?: string;
 }
 
+const DEFAULT_BACKGROUND_COLOR = Color("#1c1c1c");
+const NO_IMAGES: Readonly<Record<string, string>> = {};
+
 export default function PresenterDemo({
   slide,
-  backgroundColor = Color("#1c1c1c"),
+  backgroundColor = DEFAULT_BACKGROUND_COLOR,
+  images = NO_IMAGES,
   code,
   showControls = false,
   slideWidthPercent = 50,
@@ -51,8 +56,9 @@ export default function PresenterDemo({
             title: slide.title || "Presenter.js",
             backgroundColor,
             slides: [slide],
+            resources: { images: { ...images } },
           }),
-    [slide],
+    [backgroundColor, images, slide],
   );
 
   const updateControlState = useCallback(() => {

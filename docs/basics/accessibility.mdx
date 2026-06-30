@@ -1,0 +1,40 @@
+---
+sidebar_position: 7
+---
+
+# Accessibility
+
+Canvas graphics do not expose their visual meaning to assistive technology.
+Presenter.js addresses this with accessible descriptions that update as the
+current slide and build change.
+
+Add `description` to a slide for its overall purpose, and to non-text objects
+that carry information:
+
+```typescript
+const title = Text("Sign-Ups", {
+  /* ... (additional properties) */
+});
+
+const bar = Rectangle({
+  description: "First quarter: 200 sign-ups.",
+  /* ... (additional properties) */
+});
+
+const slide = Slide({
+  description: "A bar chart showing sign-ups for the past several quarters.",
+  objects: [
+    title,
+    bar,
+    /* ... (additional objects) */
+  ],
+});
+```
+
+Visible `Text` objects are described automatically from their content. Set a
+text object's `description` when the description of the text should differ from
+the visible wording.
+
+Descriptions are collected in object order. Objects with `opacity: 0` or `drawn:
+0` are omitted until they become visible, including objects in a group that is
+not yet visible.

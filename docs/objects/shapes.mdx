@@ -1,0 +1,36 @@
+---
+sidebar_position: 1
+---
+
+import ShapesDemo from "@site/src/demos/Shapes";
+
+# Shapes
+
+Presenter.js provides four general-purpose filled and stroked shapes:
+`Rectangle`, `Circle`, `Polygon`, and `Path`.
+
+<ShapesDemo />
+
+These shapes support `fillColor`, `strokeColor`, `strokeWidth`, and `drawn`
+properties. Animate `drawn` from `0` to `1` to reveal the outline and fill
+progressively.
+
+## Rectangle
+
+Set `x`, `y`, `width`, and `height`. Use `cornerRadius` for rounded corners.
+`anchor` determines which point of the rectangle sits at `(x, y)`.
+
+## Circle
+
+Set the center with `x` and `y`, then use `radius` for size.
+
+## Polygon
+
+`points` is an array of `{ x, y }` coordinates in slide space. Presenter.js
+connects the final point back to the first, so the polygon is always closed.
+
+## Path
+
+`path` accepts SVG path data. `viewboxWidth` and `viewboxHeight` describe the
+coordinate system used by that data; `width` and `height` control its rendered
+size. This makes one path easy to reuse at different sizes.

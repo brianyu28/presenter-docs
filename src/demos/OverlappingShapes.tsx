@@ -1,5 +1,5 @@
 import { Circle, Color, Rectangle, Slide } from "presenter";
-import PresenterDemo from "../components/PresenterDemo";
+import PresenterExample from "../components/PresenterExample";
 
 const rectangle = Rectangle({
   x: 300,
@@ -44,12 +44,5 @@ const slide = Slide({
 `;
 
 export default function OverlappingShapes() {
-  return (
-    <div style={{ marginBottom: "1em" }}>
-      <div style={{ marginBottom: "1em" }}>
-        <PresenterDemo code={code} />
-      </div>
-      <PresenterDemo slide={slide} />
-    </div>
-  );
+  return <PresenterExample code={code} slide={slide} />;
 }

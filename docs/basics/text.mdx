@@ -1,0 +1,90 @@
+---
+sidebar_position: 3
+---
+
+import SimpleText from "@site/src/demos/SimpleText";
+import TextAlignment from "@site/src/demos/TextAlignment";
+import RichText from "@site/src/demos/RichText";
+import WriteOnText from "@site/src/demos/WriteOnText";
+
+# Text
+
+## Text basics
+
+Create text with `Text(content, properties)`. Like other slide objects, text can
+be positioned, styled, and animated by keeping a reference to the object.
+
+<SimpleText />
+
+Common text properties include:
+
+- `fontFamily`: String describing the font to use to render the text. Can be a
+  single font, or a comma-separated list of fonts to indicate alternatives if
+  the first is not available on the system.
+- `fontSize`: Number describing the size of the font in pixels.
+- `fontWeight`: `FontWeight` enum value describing the weight of the font (e.g.
+  `FontWeight.NORMAL`, `FontWeight.BOLD`, `FontWeight.LIGHT`). Alternatively, a
+  number can be used to specify the weight directly (e.g. `400` for normal,
+  `700` for bold).
+- `fontStyle`: `FontStyle` enum value describing the style of the font (e.g.
+  `FontStyle.NORMAL`, `FontStyle.ITALIC`, `FontStyle.OBLIQUE`).
+- `color`: `Color` object describing the color of the text.
+
+## Length and write-on text
+
+The `length` property limits the number of characters rendered. Its default is
+`null`, which displays all text.
+
+```typescript
+const message = Text("Only part of this message is visible.", {
+  length: 25,
+});
+```
+
+The `length` property can be animated to create a "write-on" effect.
+Alternatively, the `Text.writeOn` function can generate a write-on animation for
+you.
+
+<WriteOnText />
+
+## Multi-line and rich text
+
+A plain string creates one line. For multiple lines, pass an array of rows.
+Each row is an array containing strings, `TextUnit`s, or both:
+
+```typescript
+Text([
+  ["First line"],
+  [
+    "This word is ",
+    TextUnit("important", {
+      color: Color("#fbbf24"),
+      fontWeight: FontWeight.BOLD,
+    }),
+  ],
+]);
+```
+
+Each `TextUnit` can override the parent text style for only its own span,
+including `color`, `fontFamily`, `fontSize`, `fontStyle`, `fontWeight`,
+`subscript`, and `superscript`. The parent `Text` still controls positioning,
+alignment, line spacing, opacity, and length.
+
+<RichText />
+
+## Alignment
+
+Use `alignment` to align lines inside a text block:
+
+```typescript
+Text([["Short"], ["A much longer line"]], {
+  alignment: Alignment.CENTER,
+});
+```
+
+`Alignment.LEFT` is the default. `Alignment.CENTER` and `Alignment.RIGHT`
+position shorter lines relative to the widest line in the block. This differs
+from `anchor`, which positions the entire text block relative to its `x` and
+`y` coordinates.
+
+<TextAlignment />

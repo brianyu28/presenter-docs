@@ -4,29 +4,98 @@ sidebar_position: 2
 
 import SimpleAnimation from "@site/src/demos/SimpleAnimation";
 import ChainAnimation from "@site/src/demos/ChainAnimation";
+import AnimationEasing from "@site/src/demos/AnimationEasing";
+import AnimationTiming from "@site/src/demos/AnimationTiming";
+import AnimationUtilities from "@site/src/demos/AnimationUtilities";
 
 # Animation
 
-Presenter.js is designed to make it easy to create both simple and complex animations.
+## Animation basics
 
-An **animation** in Presenter.js specifies how an object's properties should change.
+An **animation** describes how an object's properties change. A slide's
+`animations` array divides those changes into builds: each press of the right
+arrow or spacebar advances one build.
 
-To create an animation, import the `Animate` constructor from `presenter`.
-Call `Animate` and specify the object to animate and the new property values for the object.
-Add the animation to an array of `animations` for the slide.
+Create an animation with `Animate(object, newProperties, options)`.
 
 <SimpleAnimation />
 
-In the above demo, use the right and left buttons to go forward and back between animations.
-In a full-screen presentation, use the spacebar or right arrow key to advance to the next animation;
-use the left arrow key to go back.
+In the demonstration above, use the arrow buttons to move between builds. In a
+full-screen presentation, press space or the right arrow to advance and press
+the left arrow to go back.
 
-## Chaining Animations
+## Sequential and parallel builds
 
-Specifying multiple animations in the `animations` array to create a sequence of animations.
-Each time you advance to the next animation, the next animation in the array will play.
+Separate entries in `animations` are separate builds. They play one at a time as
+the presentation advances.
 
-The `animations` array can also include a sub-array of animations in place of a single animation.
-If so, all the animations in that sub-array will play together when the animation starts.
+An array nested inside `animations` is one build containing multiple unit
+animations. Those unit animations normally start together.
 
 <ChainAnimation />
+
+## Animation timing
+
+`Animate` can optionally accept a third argument describing how the animation
+should behave, including its duration and an optional delay before the animation
+begins.
+
+```typescript
+Animate(
+  object,
+  { x: 2400 },
+  {
+    duration: 600,
+    delay: 200,
+  },
+);
+```
+
+- `duration` controls how long the change takes in milliseconds. `Animate`
+  defaults to 1000 ms.
+- `delay` waits a certain number of milliseconds before the animation
+  starts.
+- `block: true` makes later animations in the same parallel build wait
+  to begin until this animation is complete.
+
+Animations in separate top-level builds already wait for the presenter to
+advance, so `block` is most useful inside a nested array:
+
+<AnimationTiming />
+
+`Pause(milliseconds)` can also be used to prevent all subsequent animations in a
+parallel build from starting until the pause is complete. Use `Pause` for a
+simple shared gap; use `delay` when not all animations should wait the same
+amount of time.
+
+## Easing and interpolation
+
+During an animation, Presenter.js **interpolates** between the old and new
+values: it calculates the intermediate value to render at each moment in time.
+Linear interpolation moves through that range at a constant rate, which can feel
+mechanical.
+
+An easing function remaps animation progress. For example, `Easing.CUBIC`
+starts gently, moves fastest in the middle, and slows into the final value:
+
+```typescript
+Animate(card, { x: 2400 }, { duration: 600, easing: Easing.CUBIC });
+```
+
+Presenter.js also includes `Easing.LINEAR`, `Easing.CUBIC_IN`,
+`Easing.CUBIC_OUT`, and `Easing.BACK_IN_OUT`. You can also provide your own
+function that accepts a progress value from `0` to `1` and returns the
+interpolated progress to use.
+
+<AnimationEasing />
+
+## Animation presets
+
+Presenter.js offers concise helper functions for common types of object transitions:
+
+<AnimationUtilities />
+
+- `Update(object, properties)` changes properties immediately.
+- `Pause(duration)` inserts time before later units in the same build.
+- `Show(object)` and `Hide(object)` immediately set opacity to `1` or `0`.
+- `FadeIn(object)` and `FadeOut(object)` animate setting opacity to `1` or `0`.
