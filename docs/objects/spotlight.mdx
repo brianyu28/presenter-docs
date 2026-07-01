@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 8
 ---
 
 import SpotlightFocus from "@site/src/demos/SpotlightFocus";
@@ -24,3 +24,17 @@ Spotlight({
 Place the spotlight after the content it should dim in the slide's `objects`
 array. Animate its position and dimensions to move focus between targets, or
 animate `opacity` to reveal and dismiss the entire effect.
+
+The full list of available `Spotlight` properties is below:
+
+| Property       | Type             | Description                                            | Default               |
+| -------------- | ---------------- | ------------------------------------------------------ | --------------------- |
+| `anchor`       | `Anchor`         | Defines which point of spotlight area sits at `(x, y)` | `Anchor.TOP_LEFT`     |
+| `cornerRadius` | `number`         | Amount of corner rounding on spotlight area, in pixels | `50`                  |
+| `description`  | `string \| null` | Accessible description of spotlight                    | `null`                |
+| `height`       | `number`         | Height of spotlight area, in pixels                    | `200`                 |
+| `color`        | `Color`          | Color of dimmed region                                 | `Color(0, 0, 0, 0.8)` |
+| `opacity`      | `number`         | Opacity of dimmed region                               | `1`                   |
+| `width`        | `number`         | Width of spotlight area, in pixels                     | `200`                 |
+| `x`            | `number`         | Horizontal position of spotlight area                  | `0`                   |
+| `y`            | `number`         | Vertical position of spotlight area                    | `0`                   |

@@ -15,12 +15,40 @@ Both objects use `startX`, `startY`, `endX`, and `endY` for their endpoints,
 `width` for stroke thickness, and `color` for the stroke. Animate `drawn`
 between `0` and `1` for a drawing effect.
 
-`Line` supports `isRounded` for round end caps and `isDrawnFromCenter` to reveal
-outward from its midpoint.
+## Line
 
-`Arrow` adds:
+The full list of available `Line` properties is below:
 
-- `arrowheadSize` to control the head independently of line width
-- `isArrowheadFilled` for a solid head
-- `isArrowheadDoubled` for heads at both ends
-- `isDrawnFromCenter` for a center-out reveal
+| Property            | Type             | Description                                     | Default       |
+| ------------------- | ---------------- | ----------------------------------------------- | ------------- |
+| `color`             | `Color`          | Color of line                                   | `Color.BLACK` |
+| `drawn`             | `number`         | Proportion of the line that is drawn            | `1`           |
+| `description`       | `string \| null` | Accessible description of line                  | `null`        |
+| `endX`              | `number`         | Ending horizontal position of line              | `100`         |
+| `endY`              | `number`         | Ending vertical position of line                | `100`         |
+| `isDrawnFromCenter` | `boolean`        | Whether drawing should begin from line midpoint | `false`       |
+| `isRounded`         | `boolean`        | Whether stroke has rounded line caps            | `false`       |
+| `opacity`           | `number`         | Opacity of line                                 | `1`           |
+| `startX`            | `number`         | Starting horizontal position of line            | `0`           |
+| `startY`            | `number`         | Starting vertical position of line              | `0`           |
+| `width`             | `number`         | Width of line, in pixels                        | `10`          |
+
+## Arrow
+
+The full list of available `Arrow` properties is below:
+
+| Property             | Type             | Description                                       | Default       |
+| -------------------- | ---------------- | ------------------------------------------------- | ------------- |
+| `arrowheadSize`      | `number`         | Size of arrowhead, in pixels                      | `width * 4`   |
+| `color`              | `Color`          | Color of arrow                                    | `Color.BLACK` |
+| `drawn`              | `number`         | Proportion of the arrow that is drawn             | `1`           |
+| `description`        | `string \| null` | Accessible description of arrow                   | `null`        |
+| `endX`               | `number`         | Ending horizontal position of arrow               | `100`         |
+| `endY`               | `number`         | Ending vertical position of arrow                 | `100`         |
+| `isArrowheadDoubled` | `boolean`        | Whether both ends of arrow should have arrowheads | `false`       |
+| `isArrowheadFilled`  | `boolean`        | Whether arrowhead path should be filled in        | `false`       |
+| `isDrawnFromCenter`  | `boolean`        | Whether drawing should begin from line midpoint   | `false`       |
+| `opacity`            | `number`         | Opacity of line                                   | `1`           |
+| `startX`             | `number`         | Starting horizontal position of arrow             | `0`           |
+| `startY`             | `number`         | Starting vertical position of arrow               | `0`           |
+| `width`              | `number`         | Width of line, in pixels                          | `10`          |

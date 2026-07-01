@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Presenting
@@ -45,6 +45,8 @@ next preview to advance.
 Use `shortcut` on a slide to create a memorable jump target:
 
 ```typescript
+import { Slide } from "presenter";
+
 const DemoSlide = Slide({
   title: "Live demo",
   shortcut: ["demo"],
@@ -52,9 +54,9 @@ const DemoSlide = Slide({
 });
 ```
 
-Press `g`, then type the shortcut name (in this case, `demo`), and then press
-Enter to jump directly to the slide. Shortcuts can also be assigned to
-individual animations.
+During a presentation, press `g`, then type the shortcut name (in this case,
+`demo`), and then press Enter to jump directly to the slide. Shortcuts can also
+be assigned to individual animations.
 
 Numeric commands are built in: `g`, followed by a slide number, then Enter jumps
 to that slide. Presenter.js also provides some other built-in shortcuts: `s` for
@@ -68,10 +70,12 @@ Set `notes` on a slide for its initial build, or set `notes` on an animation for
 a specific build:
 
 ```typescript
+import { FadeIn, Slide } from "presenter";
+
 const IntroSlide = Slide({
   title: "Introduction",
   notes: "Welcome the audience and introduce the main topics.",
-  objects: [title],
+  objects: [title, question],
   animations: [
     FadeIn(question, {
       notes: "Pause here and ask for a show of hands.",

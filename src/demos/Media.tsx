@@ -62,6 +62,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Image, Presentation, SVG } from "presenter";
+
 const presentation = Presentation({
   resources: {
     images: {
@@ -73,12 +75,12 @@ const presentation = Presentation({
 
 const image = Image({
   imageId: "presenterLogo",
-  /* ... (additional properties) */
+  /* ... additional properties ... */
 });
 
 const icon = SVG({
   svg: \`<svg viewBox="0 0 600 600">...</svg>\`,
-  /* ... (additional properties) */
+  /* ... additional properties ... */
 });
 `;
 

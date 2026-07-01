@@ -65,6 +65,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Anchor, Animate, FadeIn, Spotlight, Slide } from "presenter";
+
 const spotlight = Spotlight({
   x: 820,
   y: 1080,
@@ -72,7 +74,6 @@ const spotlight = Spotlight({
   height: 810,
   anchor: Anchor.CENTER,
   cornerRadius: 85,
-  color: Color(0, 0, 0, 0.78),
   opacity: 0,
 });
 

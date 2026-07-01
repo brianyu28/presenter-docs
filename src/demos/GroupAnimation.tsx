@@ -64,6 +64,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Anchor, Animate, Easing, Group, Slide } from "presenter";
+
 const card = Group([cardBackground, cardTitle, cardBody], {
   x: 1250,
   y: 1080,

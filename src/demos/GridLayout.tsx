@@ -65,54 +65,32 @@ const slide = Slide({
 });
 
 const code = `
-const COLORS = [
-  Color("#2563eb"),
-  Color("#7c3aed"),
-  Color("#db2777"),
-  Color("#ea580c"),
-  Color("#0891b2"),
-  Color("#059669"),
-  Color("#65a30d"),
-  Color("#ca8a04"),
-];
+import { Grid, Rectangle, Slide, Text } from "presenter";
 
-function createCell(num: number) {
-  return Group(
-    [
-      Rectangle({
-        width: 650,
-        height: 400,
-        cornerRadius: 60,
-        fillColor: COLORS[num - 1],
-      }),
-      Text(String(num), {
-        x: 325,
-        y: 200,
-        anchor: Anchor.CENTER,
-        alignment: Alignment.CENTER,
-        fontSize: 150,
-        color: Color.WHITE,
-      }),
-    ],
-    {
-      width: 650,
-      height: 400,
-    },
-  );
-}
-
-const { grid, objects } = Grid({
+const { grid } = Grid({
   rows: 2,
   cols: 4,
   width: 650,
   height: 400,
   gapX: 80,
   gapY: 100,
-  x: 1920,
-  y: 1080,
-  anchor: Anchor.CENTER,
   objects: (row, col) =>
-    createCell(row * 4 + col + 1),
+    Group(
+      [
+        Rectangle({
+          fillColor: COLORS[row * 4 + col],
+          /* ... additional properties ... */
+        }),
+        Text(String(row * 4 + col + 1), {
+          /* ... additional properties ... */
+        }),
+      ],
+      {
+        width: 650,
+        height: 400,
+      },
+    ),
+    /* ... additional properties ... */
 });
 
 const slide = Slide({

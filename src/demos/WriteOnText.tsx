@@ -17,14 +17,12 @@ const slide = Slide({
 });
 
 const code = `
+import { Anchor, Animate, Color, Slide, Text } from "presenter";
+
 const content = "Hello, world!";
 const text = Text(content, {
-  anchor: Anchor.CENTER,
-  color: Color.WHITE,
-  fontSize: 200,
   length: 0,
-  x: 1920,
-  y: 1080,
+  /* ... additional properties ... */
 });
 
 const slide = Slide({

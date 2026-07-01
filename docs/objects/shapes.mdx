@@ -3,6 +3,7 @@ sidebar_position: 1
 ---
 
 import ShapesDemo from "@site/src/demos/Shapes";
+import DrawnPath from "@site/src/demos/DrawnPath";
 
 # Shapes
 
@@ -12,25 +13,92 @@ Presenter.js provides four general-purpose filled and stroked shapes:
 <ShapesDemo />
 
 These shapes support `fillColor`, `strokeColor`, `strokeWidth`, and `drawn`
-properties. Animate `drawn` from `0` to `1` to reveal the outline and fill
-progressively.
+properties. Animate `drawn` from `0` to `1` to reveal the outline. Fill can
+then be animated separately:
+
+<DrawnPath />
 
 ## Rectangle
 
 Set `x`, `y`, `width`, and `height`. Use `cornerRadius` for rounded corners.
-`anchor` determines which point of the rectangle sits at `(x, y)`.
+
+The full list of available `Rectangle` properties is below:
+
+| Property       | Type             | Description                                   | Default           |
+| -------------- | ---------------- | --------------------------------------------- | ----------------- |
+| `anchor`       | `Anchor`         | Defines which point of shape sits at `(x, y)` | `Anchor.TOP_LEFT` |
+| `cornerRadius` | `number`         | Amount of corner rounding, in pixels          | `0`               |
+| `description`  | `string \| null` | Accessible description of shape               | `null`            |
+| `drawn`        | `number`         | Proportion of the shape that is drawn         | `1`               |
+| `height`       | `number`         | Height of shape, in pixels                    | `100`             |
+| `fillColor`    | `Color`          | Color of shape's fill                         | `Color.BLACK`     |
+| `opacity`      | `number`         | Opacity of shape                              | `1`               |
+| `strokeColor`  | `Color`          | Color of shape's border                       | `Color.BLACK`     |
+| `strokeWidth`  | `number`         | Size of shape's border in pixels              | `0`               |
+| `width`        | `number`         | Width of shape, in pixels                     | `100`             |
+| `x`            | `number`         | Horizontal position of shape                  | `0`               |
+| `y`            | `number`         | Vertical position of shape                    | `0`               |
 
 ## Circle
 
 Set the center with `x` and `y`, then use `radius` for size.
+
+The full list of available `Circle` properties is below:
+
+| Property      | Type             | Description                                   | Default           |
+| ------------- | ---------------- | --------------------------------------------- | ----------------- |
+| `anchor`      | `Anchor`         | Defines which point of shape sits at `(x, y)` | `Anchor.TOP_LEFT` |
+| `drawn`       | `number`         | Proportion of the shape that is drawn         | `1`               |
+| `description` | `string \| null` | Accessible description of shape               | `null`            |
+| `fillColor`   | `Color`          | Color of shape's fill                         | `Color.BLACK`     |
+| `opacity`     | `number`         | Opacity of shape                              | `1`               |
+| `radius`      | `number`         | Radius of circle, in pixels                   | `50`              |
+| `strokeColor` | `Color`          | Color of shape's border                       | `Color.BLACK`     |
+| `strokeWidth` | `number`         | Size of shape's border in pixels              | `0`               |
+| `x`           | `number`         | Horizontal position of shape                  | `0`               |
+| `y`           | `number`         | Vertical position of shape                    | `0`               |
 
 ## Polygon
 
 `points` is an array of `{ x, y }` coordinates in slide space. Presenter.js
 connects the final point back to the first, so the polygon is always closed.
 
+The full list of available `Polygon` properties is below:
+
+| Property      | Type             | Description                                   | Default                                                                |
+| ------------- | ---------------- | --------------------------------------------- | ---------------------------------------------------------------------- |
+| `anchor`      | `Anchor`         | Defines which point of shape sits at `(x, y)` | `Anchor.TOP_LEFT`                                                      |
+| `description` | `string \| null` | Accessible description of shape               | `null`                                                                 |
+| `drawn`       | `number`         | Proportion of the shape that is drawn         | `1`                                                                    |
+| `fillColor`   | `Color`          | Color of shape's fill                         | `Color.BLACK`                                                          |
+| `opacity`     | `number`         | Opacity of shape                              | `1`                                                                    |
+| `points`      | `Position[]`     | `{ x, y }` coordinates of polygon vertices    | `[{ x: 0, y: 0 },`<br />`{ x: 100, y: 0 },`<br />`{ x: 100, y: 100 }]` |
+| `strokeColor` | `Color`          | Color of shape's border                       | `Color.BLACK`                                                          |
+| `strokeWidth` | `number`         | Size of shape's border in pixels              | `0`                                                                    |
+
 ## Path
 
 `path` accepts SVG path data. `viewboxWidth` and `viewboxHeight` describe the
 coordinate system used by that data; `width` and `height` control its rendered
 size. This makes one path easy to reuse at different sizes.
+
+The full list of available `Path` properties is below:
+
+| Property        | Type             | Description                                   | Default              |
+| --------------- | ---------------- | --------------------------------------------- | -------------------- |
+| `anchor`        | `Anchor`         | Defines which point of shape sits at `(x, y)` | `Anchor.TOP_LEFT`    |
+| `description`   | `string \| null` | Accessible description of shape               | `null`               |
+| `drawn`         | `number`         | Proportion of the shape that is drawn         | `1`                  |
+| `fillColor`     | `Color`          | Color of shape's fill                         | `Transparent()`      |
+| `height`        | `number`         | Height of shape, in pixels                    | `100`                |
+| `isRounded`     | `boolean`        | Whether stroke has rounded line caps          | `false`              |
+| `opacity`       | `number`         | Opacity of shape                              | `1`                  |
+| `path`          | `string`         | SVG path string                               | `M 0 0 L 100 100`    |
+| `pathLength`    | `number`         | Length of SVG path                            | Computed path length |
+| `strokeColor`   | `Color`          | Color of shape's border                       | `Color.BLACK`        |
+| `strokeWidth`   | `number`         | Size of shape's border in pixels              | `4`                  |
+| `viewboxHeight` | `number`         | Coordinate height of SVG viewbox              | `height`             |
+| `viewboxWidth`  | `number`         | Coordinate width of SVG viewbox               | `width`              |
+| `width`         | `number`         | Width of shape, in pixels                     | `100`                |
+| `x`             | `number`         | Horizontal position of shape                  | `0`                  |
+| `y`             | `number`         | Vertical position of shape                    | `0`                  |

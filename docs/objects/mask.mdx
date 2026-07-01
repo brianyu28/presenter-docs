@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 7
 ---
 
 import MaskClipping from "@site/src/demos/MaskClipping";
@@ -20,3 +20,17 @@ separately. You can still keep and animate each child's original reference.
 
 Set `preview: true` while developing to draw the mask boundary, then remove it
 for the final presentation.
+
+The full list of available `Mask` properties is below:
+
+| Property      | Type             | Description                                                | Default                                         |
+| ------------- | ---------------- | ---------------------------------------------------------- | ----------------------------------------------- |
+| `anchor`      | `Anchor`         | Defines which point of clipping rectangle sits at `(x, y)` | `Anchor.TOP_LEFT`                               |
+| `description` | `string \| null` | Accessible description of mask                             | `null`                                          |
+| `height`      | `number`         | Height of clipping rectangle, in pixels                    | `100`                                           |
+| `objects`     | `SlideObject[]`  | Objects to mask                                            | none, provided as first argument to constructor |
+| `opacity`     | `number`         | Opacity of masked objects                                  | `1`                                             |
+| `preview`     | `boolean`        | Debugging flag that previews mask shape                    | `false`                                         |
+| `width`       | `number`         | Width of clipping rectangle, in pixels                     | `100`                                           |
+| `x`           | `number`         | Horizontal position of clipping rectangle                  | `0`                                             |
+| `y`           | `number`         | Vertical position of clipping rectangle                    | `0`                                             |

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 import MediaDemo from "@site/src/demos/Media";
@@ -12,9 +12,12 @@ Use `Image` for raster image resources and `SVG` for inline vector markup.
 
 ## Image
 
-Register image URLs on the presentation, then refer to them by `imageId`:
+Register image URLs (local or external) on the presentation, then refer to them
+by `imageId` when constructing an `Image`:
 
 ```typescript
+import { Presentation } from "presenter";
+
 const presentation = Presentation({
   resources: {
     images: {
@@ -25,9 +28,20 @@ const presentation = Presentation({
 });
 ```
 
-Set `x`, `y`, `width`, `height`, and `anchor` on the `Image`. `cornerRadius`
-clips rounded corners. Set `smooth: false` when enlarging pixel art that should
-keep crisp edges.
+The full list of available `Image` properties is below:
+
+| Property       | Type             | Description                                     | Default           |
+| -------------- | ---------------- | ----------------------------------------------- | ----------------- |
+| `anchor`       | `Anchor`         | Defines which point of image sits at `(x, y)`   | `Anchor.TOP_LEFT` |
+| `cornerRadius` | `number`         | Amount of corner rounding, in pixels            | `0`               |
+| `description`  | `string \| null` | Accessible description of image                 | `null`            |
+| `height`       | `number`         | Height of image, in pixels                      | `100`             |
+| `imageId`      | `string`         | Identifier of image to render                   | `""`              |
+| `opacity`      | `number`         | Opacity of image                                | `1`               |
+| `smooth`       | `boolean`        | Whether to smooth colors along pixel boundaries | `true`            |
+| `width`        | `number`         | Width of image, in pixels                       | `100`             |
+| `x`            | `number`         | Horizontal position of image                    | `0`               |
+| `y`            | `number`         | Vertical position of image                      | `0`               |
 
 ## SVG
 
@@ -37,3 +51,16 @@ good fit for icons, diagrams, and generated artwork.
 
 For external SVG files that should be loaded as resources, register the file
 under `resources.images` and use `Image`.
+
+The full list of available `SVG` properties is below:
+
+| Property      | Type             | Description                                     | Default           |
+| ------------- | ---------------- | ----------------------------------------------- | ----------------- |
+| `anchor`      | `Anchor`         | Defines which point of graphic sits at `(x, y)` | `Anchor.TOP_LEFT` |
+| `description` | `string \| null` | Accessible description of graphic               | `null`            |
+| `height`      | `number`         | Height of graphic, in pixels                    | `100`             |
+| `svg`         | `string`         | SVG path string of graphic                      | `""`              |
+| `opacity`     | `number`         | Opacity of graphic                              | `1`               |
+| `width`       | `number`         | Width of graphic, in pixels                     | `100`             |
+| `x`           | `number`         | Horizontal position of graphic                  | `0`               |
+| `y`           | `number`         | Vertical position of graphic                    | `0`               |

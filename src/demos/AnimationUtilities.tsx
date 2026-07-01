@@ -48,6 +48,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Color, FadeIn, FadeOut, Hide, Pause, Show, Slide, Update } from "presenter";
+
 const slide = Slide({
   objects: [card, circle],
   animations: [

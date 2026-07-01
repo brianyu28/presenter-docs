@@ -65,6 +65,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Arrow, Color, Line } from "presenter";
+
 const line = Line({
   startX: 500,
   startY: 800,

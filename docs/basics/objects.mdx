@@ -37,6 +37,12 @@ Since presentations can have arbitrary JavaScript, objects can also be created d
 Most objects support `x` and `y` properties for specifying position.
 The `anchor` property positions an object relative to its `x` and `y` coordinates.
 
+Access the possible anchor values by importing `Anchor` into your slide:
+
+```typescript
+import { Anchor } from "presenter";
+```
+
 Some common `Anchor` values:
 
 - `Anchor.TOP_LEFT` means: put the top-left corner of the element at `(x, y)`
@@ -51,6 +57,12 @@ As you might expect, `Anchor.TOP`, `Anchor.TOP_RIGHT`, `Anchor.RIGHT`, `Anchor.B
 Most objects support `color`, `strokeColor`, and/or `fillColor` properties.
 These can be set to a Presenter.js `Color` object, which specifies a RGB (red/green/blue) color value,
 where each color channel takes on values from 0 to 255.
+
+Use the `Color` constructor by importing it into your slide:
+
+```typescript
+import { Color } from "presenter";
+```
 
 Presenter.js comes with a few default colors: `Color.WHITE`, `Color.BLACK`, `Color.RED`, `Color.BLUE`, and `Color.GREEN`.
 

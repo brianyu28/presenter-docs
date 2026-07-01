@@ -1,0 +1,63 @@
+---
+sidebar_position: 3
+---
+
+# Text
+
+See the [Text Basics](/docs/basics/text) guide for an introduction to `Text` in Presenter.js.
+
+## `Text`
+
+`Text` is a `SlideObject` that can render text on a slide.
+
+`Text` supports all of the properties of `TextStyle` (described next in this document), plus the properties below:
+
+| Property      | Type             | Description                                  | Default                        |
+| ------------- | ---------------- | -------------------------------------------- | ------------------------------ |
+| `alignment`   | `Alignment`      | Defines how lines of text should be aligned  | `Alignment.LEFT`               |
+| `anchor`      | `Anchor`         | Defines which point of text sits at `(x, y)` | `Anchor.TOP_LEFT`              |
+| `description` | `string \| null` | Accessible description of text               | String version of text content |
+| `length`      | `number \| null` | Number of visible characters of text         | `null` (shows all)             |
+| `lineSpacing` | `number`         | Relative amount of space between lines       | `1`                            |
+| `opacity`     | `number`         | Opacity of text                              | `1`                            |
+| `text`        | `TextContent`    | Text to render on slide                      | `""`                           |
+| `x`           | `number`         | Horizontal position of text                  | `0`                            |
+| `y`           | `number`         | Vertical position of text                    | `0`                            |
+
+## `TextStyle`
+
+`TextStyle` defines additional properties that can be used to style a full
+`Text` object or individual units of text. `TextStyle` supports the following
+properties:
+
+| Property      | Type                   | Description                                      | Default             |
+| ------------- | ---------------------- | ------------------------------------------------ | ------------------- |
+| `color`       | `Color`                | Color to use to render text                      | `Color.BLACK`       |
+| `fontFamily`  | `string`               | Font name or comma-separated list of fonts       | `sans-serif`        |
+| `fontSize`    | `number`               | Size to use to render text                       | `100`               |
+| `fontStyle`   | `FontStyle`            | Style of font (e.g. normal, italic)              | `FontStyle.NORMAL`  |
+| `fontWeight`  | `FontWeight \| number` | Weight of font (e.g. 400 is normal, 700 is bold) | `FontWeight.NORMAL` |
+| `ligatures`   | `boolean`              | Whether to render text with ligatures            | `false`             |
+| `subscript`   | `boolean`              | Whether to render text as superscript            | `false`             |
+| `superscript` | `boolean`              | Whether to render text as subscript              | `false`             |
+
+## `TextContent` and `TextUnit`
+
+The text content of a `Text` object has type `TextContent`. `TextContent` can
+either be a `string` (representing a single line of text with consistent
+styling) or it can be an array of lines of text.
+
+If `TextContent` is an array of lines of text, each line itself is an array of
+`TextUnit | string`. A `string` represents part of a line that retains the same
+styling as the `Text` object overall. A `TextUnit` represents part of a line
+that can have different text styling.
+
+The full TypeScript types are given below:
+
+```typescript
+interface TextUnit extends Partial<TextStyle> {
+  text: string;
+}
+
+type TextContent = string | (TextUnit | string)[][];
+```

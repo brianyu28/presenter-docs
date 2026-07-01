@@ -2,7 +2,7 @@ import { Anchor, Animate, Color, Rectangle, Slide } from "presenter";
 import PresenterExample from "../components/PresenterExample";
 import { scaleY } from "../utils/size";
 
-const rectangle = Rectangle({
+const square = Rectangle({
   x: 800,
   y: scaleY(0.5),
   width: 800,
@@ -12,22 +12,22 @@ const rectangle = Rectangle({
 });
 
 const slide = Slide({
-  objects: [rectangle],
-  animations: [Animate(rectangle, { x: 3000 })],
+  objects: [square],
+  animations: [Animate(square, { x: 3000 })],
 });
 
 const code = `
-import { Animate, Slide } from "presenter";
+import { Animate, Rectangle, Slide } from "presenter";
 
-const rectangle = Rectangle({
+const square = Rectangle({
   x: 800,
-  /* ... (additional properties) */
+  /* ... additional properties ... */
 });
 
 const slide = Slide({
-  objects: [rectangle],
+  objects: [square],
   animations: [
-    Animate(rectangle, { x: 3000 })
+    Animate(square, { x: 3000 })
   ],
 });
 `;

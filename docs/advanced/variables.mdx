@@ -1,0 +1,49 @@
+---
+sidebar_position: 2
+---
+
+# Variables
+
+`Variable` creates a numeric value that can be adjusted from controls inside the
+presentation. It is useful when tuning a property interactively: instead of
+repeatedly editing the source, you can move a slider and preview the new value.
+
+Variables are meant primarily as a debugging and development tool rather than a
+tool to be used in a live presentation.
+
+In the following example, a variable is defined for a rectangle's `cornerRadius`
+that allows interactively adjusting the radius and viewing the results.
+
+```typescript
+import { Rectangle, Slide, Variable } from "presenter";
+
+const rounding = Variable({
+  name: "Rounding",
+  min: 0,
+  max: 300,
+  default: 80,
+  increment: 10,
+});
+
+const card = Rectangle({
+  cornerRadius: rounding,
+  /* ... additional properties ... */
+});
+
+const slide = Slide({
+  objects: [card],
+});
+```
+
+The properties available for a `Variable` are:
+
+| Property    | Type     | Description                                    | Default            |
+| ----------- | -------- | ---------------------------------------------- | ------------------ |
+| `default`   | `number` | Initial value, clamped between `min` and `max` | `0`                |
+| `increment` | `number` | Step used by the slider and numeric input      | `0.01`             |
+| `min`       | `number` | Lowest selectable value                        | `0`                |
+| `max`       | `number` | Highest selectable value                       | `1`                |
+| `name`      | `string` | Label displayed beside the variable control    | Unique variable ID |
+
+Variables are associated with their creation order, so define them at module
+scope and keep that order stable. `Variable` values are always numbers.

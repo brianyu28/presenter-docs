@@ -35,7 +35,7 @@ const slide = Slide({
       ),
       Animate(
         dots[2],
-        { x: 2770 },
+        { x: 2720 },
         {
           duration: 500,
         },

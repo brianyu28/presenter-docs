@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 ---
 
 import GridLayout from "@site/src/demos/GridLayout";
@@ -16,6 +16,8 @@ Set `rows`, `cols`, the cell `width` and `height`, and optional `gapX` and
 `null` to leave a cell empty.
 
 ```typescript
+import { Grid } from "presenter";
+
 const { grid, objects } = Grid({
   rows: 3,
   cols: 4,
@@ -31,3 +33,24 @@ later.
 
 `width` and `height` may also be functions of `(row, col)` when cell dimensions
 vary. Pass additional backing-group properties through `groupProps`.
+
+The full list of available `Grid` properties is below:
+
+| Property     | Type                                                | Description                                    | Default           |
+| ------------ | --------------------------------------------------- | ---------------------------------------------- | ----------------- |
+| `anchor`     | `Anchor`                                            | Defines which point of grid sits at `(x, y)`   | `Anchor.TOP_LEFT` |
+| `cols`       | `number`                                            | Number of columns in the grid                  | `1`               |
+| `gapX`       | `number`                                            | Horizontal space between grid cells, in pixels | `0`               |
+| `gapY`       | `number`                                            | Vertical space between grid cells, in pixels   | `0`               |
+| `groupProps` | `Partial<Group>`                                    | `Group` properties to apply to grid            | `{}`              |
+| `height`     | `number \| (row: number, col: number) => number`    | Height of a cell in the grid, in pixels        | `0`               |
+| `objects`    | `(row: number, col: number) => SlideObject \| null` | Function that generates grid cells             | `() => null`      |
+| `rows`       | `number`                                            | Number of rows in the grid                     | `1`               |
+| `width`      | `number \| (row: number, col: number) => number`    | Width of a cell in the grid, in pixels         | `0`               |
+| `x`          | `number`                                            | Horizontal position of grid                    | `0`               |
+| `y`          | `number`                                            | Vertical position of grid                      | `0`               |
+
+The `Grid` constructor returns:
+
+- `grid`: A `Group` that can be added to the `objects` of a slide to render the grid.
+- `objects`: A `(SlideObject | null)[][]` 2D-array of all objects in the grid.

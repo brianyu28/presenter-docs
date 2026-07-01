@@ -42,15 +42,17 @@ const slide = Slide({
 });
 
 const code = `
-  const slide = Slide({
-    objects: [circle1, circle2, label1, label2],
-    animations: [
-      Animate(circle1, { x: 3340 }),
-      Animate(circle2, { x: 3340 }, { easing: Easing.CUBIC }),
-      Animate(circle1, { x: 500 }),
-      Animate(circle2, { x: 500 }, { easing: Easing.CUBIC }),
-    ],
-  });
+import { Animate, Easing, Slide } from "presenter";
+
+const slide = Slide({
+  objects: [circle1, circle2, label1, label2],
+  animations: [
+    Animate(circle1, { x: 3340 }),
+    Animate(circle2, { x: 3340 }, { easing: Easing.CUBIC }),
+    Animate(circle1, { x: 500 }),
+    Animate(circle2, { x: 500 }, { easing: Easing.CUBIC }),
+  ],
+});
 `;
 
 export default function AnimationEasing() {

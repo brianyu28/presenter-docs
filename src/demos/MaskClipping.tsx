@@ -59,6 +59,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Anchor, Animate, Circle, Color, Mask, Slide } from "presenter";
+
 const circle = Circle({
   x: 900,
   y: 1080,
@@ -76,7 +78,7 @@ const mask = Mask([circle], {
 });
 
 const slide = Slide({
-  objects: [mask],
+  objects: [mask, /* ... other objects ... */],
   animations: [
     Animate(circle, { x: 2940 }),
   ],

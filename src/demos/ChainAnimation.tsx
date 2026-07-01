@@ -2,7 +2,7 @@ import { Anchor, Animate, Circle, Color, Rectangle, Slide } from "presenter";
 import PresenterExample from "../components/PresenterExample";
 import { scaleY } from "../utils/size";
 
-const rectangle = Rectangle({
+const square = Rectangle({
   x: 800,
   y: scaleY(0.5),
   width: 800,
@@ -21,26 +21,28 @@ const circle = Circle({
 });
 
 const slide = Slide({
-  objects: [rectangle, circle],
+  objects: [square, circle],
   animations: [
-    Animate(rectangle, { x: 3000 }),
-    Animate(rectangle, { fillColor: Color.BLUE }),
-    Animate(rectangle, { x: 800, fillColor: Color.GREEN }),
-    [Animate(rectangle, { opacity: 0 }), Animate(circle, { opacity: 1 })],
+    Animate(square, { x: 3000 }),
+    Animate(square, { fillColor: Color.BLUE }),
+    Animate(square, { x: 800, fillColor: Color.GREEN }),
+    [Animate(square, { opacity: 0 }), Animate(circle, { opacity: 1 })],
   ],
 });
 
 const code = `
-/* ... (object definitions) */
+import { Animate, Color, Slide } from "presenter";
+
+/* ... object definitions ... */
 
 const slide = Slide({
-  objects: [rectangle, circle],
+  objects: [square , circle],
   animations: [
-    Animate(rectangle, { x: 3000 }),
-    Animate(rectangle, { fillColor: Color.BLUE }),
-    Animate(rectangle, { x: 800, fillColor: Color.GREEN }),
+    Animate(square, { x: 3000 }),
+    Animate(square, { fillColor: Color.BLUE }),
+    Animate(square, { x: 800, fillColor: Color.GREEN }),
     [
-      Animate(rectangle, { opacity: 0 }),
+      Animate(square, { opacity: 0 }),
       Animate(circle, { opacity: 1 })
     ],
   ],

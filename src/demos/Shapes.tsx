@@ -57,11 +57,14 @@ const polygon = Polygon({
   strokeWidth: 18,
 });
 
+const STAR_PATH =
+  "M 50 6.58 L 60.78 39.75 L 95.65 39.75 L 67.44 60.25 L 78.21 93.42 L 50 72.92 L 21.79 93.42 L 32.56 60.25 L 4.35 39.75 L 39.22 39.75 Z";
+
 const path = Path({
-  path: "M 50 4 L 61 36 L 96 36 L 68 56 L 79 90 L 50 70 L 21 90 L 32 56 L 4 36 L 39 36 Z",
-  x: 2450,
+  path: STAR_PATH,
+  x: 2550,
   y: 1390,
-  width: 820,
+  width: 620,
   height: 620,
   viewboxWidth: 100,
   viewboxHeight: 100,
@@ -75,6 +78,8 @@ const slide = Slide({
 });
 
 const code = `
+import { Anchor, Circle, Color, Path, Polygon, Rectangle } from "presenter";
+
 const rectangle = Rectangle({
   x: 330,
   y: 500,
@@ -102,10 +107,10 @@ const polygon = Polygon({
 });
 
 const path = Path({
-  path: "M 50 4 L 61 36 L 96 36 ... Z",
-  x: 2450,
+  path: "M 50 6.58 L 60.78 39.75 L 95.65 39.75 ... Z",
+  x: 2550,
   y: 1390,
-  width: 820,
+  width: 620,
   height: 620,
   viewboxWidth: 100,
   viewboxHeight: 100,

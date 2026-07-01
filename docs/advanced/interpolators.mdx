@@ -1,0 +1,80 @@
+---
+sidebar_position: 1
+---
+
+import CustomEasing from "@site/src/demos/CustomEasing";
+import CustomInterpolator from "@site/src/demos/CustomInterpolator";
+import NumericTextInterpolation from "@site/src/demos/NumericTextInterpolation";
+
+# Interpolation
+
+During an animation, Presenter.js calculates a progress value and uses it to
+produce the intermediate value of every animated property:
+
+1. The animation's `easing` function converts elapsed time into eased progress.
+2. An interpolator converts that progress into a value between the property's
+   starting and ending values.
+
+Presenter.js includes easing functions such as `Easing.LINEAR` and
+`Easing.CUBIC`; it also includes default interpolators for numbers and colors.
+Both parts of the process can be customized.
+
+## Custom Easing Functions
+
+Define a custom easing function by writing a function that obeys the type:
+
+```typescript
+type EasingFunction = (t: number) => number;
+```
+
+An easing function accepts a normalized time from `0` at the start of an
+animation to `1` at the end and returns its progress. It should return `0` for
+an input of `0` and `1` for an input of `1`. Values outside that range can
+create effects such as overshooting the destination.
+
+This easing function uses a cosine wave whose size decreases over time, making
+the object bounce around its destination before settling:
+
+<CustomEasing />
+
+Pass any function with the `EasingFunction` signature to the `easing` option of
+`Animate`. The resulting progress is then passed to the interpolator for each
+property in that animation.
+
+## Custom Interpolator Functions
+
+Define a custom interpolator by creating a value that follows the interface:
+
+```typescript
+interface Interpolator<T> {
+  check: (value: unknown, propertyName: string) => value is T;
+  interpolate: (from: T, to: T, proportion: number) => T;
+}
+```
+
+An `Interpolator<T>` has two functions:
+
+- `check(value, propertyName)` determines whether the interpolator handles a
+  value. Presenter.js calls it for both the starting and ending values.
+- `interpolate(from, to, proportion)` returns the value to render at the current
+  eased proportion.
+
+Here is a small interpolator that moves an object's `x` position in 400-pixel
+steps:
+
+<CustomInterpolator />
+
+Provide custom interpolators through the `interpolators` option. Presenter.js
+checks them in array order before its built-in interpolators and uses the first
+one that matches both values. Built-in number and color interpolation remains
+available when none of the custom entries match.
+
+### Interpolating numeric text
+
+Text objects normally don't have special interpolation handling so they fall
+back to default behavior, where changing a `Text` object's `text` property from
+`"0"` to `"100"` is an immediate change rather than a smooth one. A custom
+interpolator can recognize numeric strings and calculate the text for each
+frame:
+
+<NumericTextInterpolation />

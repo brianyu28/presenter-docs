@@ -33,19 +33,25 @@ const slide = Slide({
 });
 
 const code = `
-Text(
-  [
-    ["CENTER"],
-    ["A longer second line"],
-  ],
-  {
-    x: 1920,
-    y: 950,
-    anchor: Anchor.TOP,
-    alignment: Alignment.CENTER,
-    fontSize: 120,
-  },
+import { Alignment, Slide, Text } from "presenter";
+
+const alignments = [
+  { alignment: Alignment.LEFT, y: 350, label: "LEFT" },
+  { alignment: Alignment.CENTER, y: 950, label: "CENTER" },
+  { alignment: Alignment.RIGHT, y: 1550, label: "RIGHT" },
+];
+
+const textBlocks = alignments.map(({ alignment, label, y }) =>
+  Text([[label], ["A longer second line"]], {
+    alignment,
+    y,
+    /* ... additional properties ... */
+  }),
 );
+
+const slide = Slide({
+  objects: [guide, ...textBlocks],
+});
 `;
 
 export default function TextAlignment() {

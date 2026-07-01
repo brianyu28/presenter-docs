@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Accessibility
@@ -12,13 +12,15 @@ Add `description` to a slide for its overall purpose, and to non-text objects
 that carry information:
 
 ```typescript
+import { Rectangle, Slide, Text } from "presenter";
+
 const title = Text("Sign-Ups", {
-  /* ... (additional properties) */
+  /* ... additional properties ... */
 });
 
 const bar = Rectangle({
   description: "First quarter: 200 sign-ups.",
-  /* ... (additional properties) */
+  /* ... additional properties ... */
 });
 
 const slide = Slide({
@@ -26,7 +28,7 @@ const slide = Slide({
   objects: [
     title,
     bar,
-    /* ... (additional objects) */
+    /* ... additional objects ... */
   ],
 });
 ```

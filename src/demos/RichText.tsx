@@ -42,6 +42,8 @@ const slide = Slide({
 });
 
 const code = `
+import { FontStyle, FontWeight, Slide, Text, TextUnit } from "presenter";
+
 const message = Text(
   [
     [
@@ -53,13 +55,8 @@ const message = Text(
     ],
   ],
   {
-    x: 1920,
-    y: 1080,
-    anchor: Anchor.CENTER,
-    color: Color.WHITE,
-    fontSize: 140,
-    lineSpacing: 1.3,
     length: 31,
+    /* ... additional properties ... */
   },
 );
 

@@ -1,0 +1,22 @@
+---
+sidebar_position: 5
+---
+
+# Presentation
+
+When defining a presentation, you can customize the presentation's title,
+slides, background color, and dimensions.
+
+```typescript
+import { Color, Presentation } from "presenter";
+
+const presentation = Presentation({
+  backgroundColor: Color.BLACK,
+  size: { width: 1920, height: 1080 },
+  slides: [FirstSlide, SecondSlide, ThirdSlide],
+  title: "My Presentation",
+});
+```
+
+By default, presentations use a background color of `Color.WHITE` and a size of
+3840x2160.

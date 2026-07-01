@@ -13,10 +13,10 @@ import AnimationUtilities from "@site/src/demos/AnimationUtilities";
 ## Animation basics
 
 An **animation** describes how an object's properties change. A slide's
-`animations` array divides those changes into builds: each press of the right
-arrow or spacebar advances one build.
+`animations` array divides those changes into **builds**: each press of the
+right arrow or spacebar advances one build.
 
-Create an animation with `Animate(object, newProperties, options)`.
+Create an animation with `Animate(object, newProperties, options?)`.
 
 <SimpleAnimation />
 
@@ -26,37 +26,32 @@ the left arrow to go back.
 
 ## Sequential and parallel builds
 
-Separate entries in `animations` are separate builds. They play one at a time as
-the presentation advances.
+Separate entries in the `animations` array are separate builds. They play one at
+a time as the presentation advances.
 
-An array nested inside `animations` is one build containing multiple unit
-animations. Those unit animations normally start together.
+An array nested inside `animations` represents a single build containing
+multiple unit animations. Those unit animations are triggered together as part
+of the same build.
 
 <ChainAnimation />
 
 ## Animation timing
 
-`Animate` can optionally accept a third argument describing how the animation
-should behave, including its duration and an optional delay before the animation
-begins.
+`Animate` can optionally accept a third argument with parameters describing how
+the animation should behave, including its duration and an optional delay before
+the animation begins. For example:
 
 ```typescript
-Animate(
-  object,
-  { x: 2400 },
-  {
-    duration: 600,
-    delay: 200,
-  },
-);
+import { Animate } from "presenter";
+
+Animate(object, { x: 2400 }, { duration: 600, delay: 200, block: true });
 ```
 
 - `duration` controls how long the change takes in milliseconds. `Animate`
   defaults to 1000 ms.
-- `delay` waits a certain number of milliseconds before the animation
-  starts.
-- `block: true` makes later animations in the same parallel build wait
-  to begin until this animation is complete.
+- `delay` waits a certain number of milliseconds before the animation starts.
+- `block` is a `boolean` value that makes later animations in the same parallel
+  build wait to begin until this animation is complete.
 
 Animations in separate top-level builds already wait for the presenter to
 advance, so `block` is most useful inside a nested array:
@@ -66,36 +61,38 @@ advance, so `block` is most useful inside a nested array:
 `Pause(milliseconds)` can also be used to prevent all subsequent animations in a
 parallel build from starting until the pause is complete. Use `Pause` for a
 simple shared gap; use `delay` when not all animations should wait the same
-amount of time.
+amount of time. Import `Pause` into your slide with:
+
+```typescript
+import { Pause } from "presenter";
+```
 
 ## Easing and interpolation
 
 During an animation, Presenter.js **interpolates** between the old and new
 values: it calculates the intermediate value to render at each moment in time.
-Linear interpolation moves through that range at a constant rate, which can feel
-mechanical.
+Linear interpolation moves through that range at a constant rate.
 
-An easing function remaps animation progress. For example, `Easing.CUBIC`
-starts gently, moves fastest in the middle, and slows into the final value:
+An easing function customizes how values are interpolated. For example,
+`Easing.CUBIC` starts gently, moves fastest in the middle, and slows into the
+final value; this often produces a more natural-feeling animation compared to a
+linear interpolation:
 
-```typescript
-Animate(card, { x: 2400 }, { duration: 600, easing: Easing.CUBIC });
-```
+<AnimationEasing />
+<br />
 
 Presenter.js also includes `Easing.LINEAR`, `Easing.CUBIC_IN`,
 `Easing.CUBIC_OUT`, and `Easing.BACK_IN_OUT`. You can also provide your own
-function that accepts a progress value from `0` to `1` and returns the
-interpolated progress to use.
-
-<AnimationEasing />
+custom easing function that accepts a time value from `0` to `1` and
+returns a corresponding progress value from `0` to `1`.
 
 ## Animation presets
 
 Presenter.js offers concise helper functions for common types of object transitions:
 
-<AnimationUtilities />
-
-- `Update(object, properties)` changes properties immediately.
+- `Update(object, properties)` changes properties immediately, without animation.
 - `Pause(duration)` inserts time before later units in the same build.
-- `Show(object)` and `Hide(object)` immediately set opacity to `1` or `0`.
-- `FadeIn(object)` and `FadeOut(object)` animate setting opacity to `1` or `0`.
+- `Show(object)` and `Hide(object)` immediately set `opacity` to `1` or `0`.
+- `FadeIn(object)` and `FadeOut(object)` animate setting `opacity` to `1` or `0`.
+
+<AnimationUtilities />
