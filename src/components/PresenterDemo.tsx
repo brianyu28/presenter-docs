@@ -82,6 +82,8 @@ export default function PresenterDemo({
     }
 
     const renderer = new BrowserCanvasRenderer({
+      // Don't cache presentation state, since multiple presentations share same title
+      cacheDurationMinutes: 0,
       element: host,
       presentation,
     });
