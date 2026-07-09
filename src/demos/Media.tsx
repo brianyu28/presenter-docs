@@ -1,12 +1,8 @@
 import { Anchor, Color, Image, Rectangle, Slide, SVG, Text } from "presenter";
 import PresenterExample from "../components/PresenterExample";
 
-const images = {
-  presenterLogo: "/img/presenter.png",
-};
-
 const image = Image({
-  imageId: "presenterLogo",
+  imagePath: "/img/presenter.png",
   x: 1000,
   y: 1080,
   width: 1050,
@@ -62,19 +58,10 @@ const slide = Slide({
 });
 
 const code = `
-import { Image, Presentation, SVG } from "presenter";
-
-const presentation = Presentation({
-  resources: {
-    images: {
-      presenterLogo: "/images/presenter.png",
-    },
-  },
-  slides: [mediaSlide],
-});
+import { Image, SVG } from "presenter";
 
 const image = Image({
-  imageId: "presenterLogo",
+  imagePath: "/img/presenter.png",
   /* ... additional properties ... */
 });
 
@@ -85,5 +72,5 @@ const icon = SVG({
 `;
 
 export default function Media() {
-  return <PresenterExample code={code} images={images} slide={slide} />;
+  return <PresenterExample code={code} slide={slide} />;
 }

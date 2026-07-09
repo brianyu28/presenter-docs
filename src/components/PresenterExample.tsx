@@ -8,6 +8,7 @@ interface PresenterExampleProps {
   readonly images?: Readonly<Record<string, string>>;
   readonly showControls?: boolean;
   readonly slide: Slide;
+  readonly useThreeRenderer?: boolean;
 }
 
 export default function PresenterExample({
@@ -16,6 +17,7 @@ export default function PresenterExample({
   images,
   showControls = false,
   slide,
+  useThreeRenderer = false,
 }: PresenterExampleProps): ReactNode {
   return (
     <div style={{ marginBottom: "1em" }}>
@@ -27,6 +29,7 @@ export default function PresenterExample({
         images={images}
         slide={slide}
         showControls={showControls}
+        useThreeRenderer={useThreeRenderer}
       />
     </div>
   );

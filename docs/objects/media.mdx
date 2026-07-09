@@ -12,8 +12,9 @@ Use `Image` for raster image resources and `SVG` for inline vector markup.
 
 ## Image
 
-Register image URLs (local or external) on the presentation, then refer to them
-by `imageId` when constructing an `Image`:
+Refer to an image by specifying a particular (local or external) `imagePath`, or
+by registering the image under `resources.images` and referring to it by
+`imageId`.
 
 ```typescript
 import { Presentation } from "presenter";
@@ -28,6 +29,9 @@ const presentation = Presentation({
 });
 ```
 
+You only need to specify either an `imagePath` or an `imageId`, not both. If
+both are specified, `imageId` takes precedence.
+
 The full list of available `Image` properties is below:
 
 | Property       | Type             | Description                                     | Default           |
@@ -36,7 +40,8 @@ The full list of available `Image` properties is below:
 | `cornerRadius` | `number`         | Amount of corner rounding, in pixels            | `0`               |
 | `description`  | `string \| null` | Accessible description of image                 | `null`            |
 | `height`       | `number`         | Height of image, in pixels                      | `100`             |
-| `imageId`      | `string`         | Identifier of image to render                   | `""`              |
+| `imageId`      | `string \| null` | Identifier of image to render                   | `null`            |
+| `imagePath`    | `string \| null` | Path of image to render                         | `null`            |
 | `opacity`      | `number`         | Opacity of image                                | `1`               |
 | `smooth`       | `boolean`        | Whether to smooth colors along pixel boundaries | `true`            |
 | `width`        | `number`         | Width of image, in pixels                       | `100`             |

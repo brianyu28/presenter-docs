@@ -1,10 +1,11 @@
+import { usePrismTheme } from "@docusaurus/theme-common";
 import {
   BrowserCanvasRenderer,
   Color,
   Presentation,
   type Slide as PresenterSlide,
 } from "presenter";
-import { usePrismTheme } from "@docusaurus/theme-common";
+import { getThreeObjectRenderers } from "presenter/3d";
 import { Highlight } from "prism-react-renderer";
 import {
   useCallback,
@@ -26,6 +27,7 @@ interface PresenterDemoProps {
   readonly slideWidthPercent?: number;
   readonly slideMaxWidth?: number;
   readonly codeHeight?: string;
+  readonly useThreeRenderer?: boolean;
 }
 
 const DEFAULT_BACKGROUND_COLOR = Color("#1c1c1c");
@@ -40,6 +42,7 @@ export default function PresenterDemo({
   slideWidthPercent = 50,
   slideMaxWidth = 800,
   codeHeight,
+  useThreeRenderer = false,
 }: PresenterDemoProps): ReactNode {
   const hostRef = useRef<HTMLDivElement | null>(null);
   const rendererRef = useRef<BrowserCanvasRenderer | null>(null);
@@ -81,22 +84,45 @@ export default function PresenterDemo({
       return;
     }
 
-    const renderer = new BrowserCanvasRenderer({
-      // Don't cache presentation state, since multiple presentations share same title
-      cacheDurationMinutes: 0,
-      element: host,
-      presentation,
-    });
-    rendererRef.current = renderer;
-    void renderer.present().then(updateControlState);
+    const demoHost = host;
+    const demoPresentation = presentation;
+    let isDisposed = false;
+    let renderer: BrowserCanvasRenderer | null = null;
+
+    async function presentDemo(): Promise<void> {
+      const objectRenderers = useThreeRenderer
+        ? await getThreeObjectRenderers(demoPresentation)
+        : undefined;
+
+      if (isDisposed) {
+        return;
+      }
+
+      renderer = new BrowserCanvasRenderer({
+        // Don't cache presentation state, since multiple presentations share same title
+        cacheDurationMinutes: 0,
+        element: demoHost,
+        objectRenderers,
+        presentation: demoPresentation,
+      });
+      rendererRef.current = renderer;
+      await renderer.present();
+
+      if (!isDisposed) {
+        updateControlState();
+      }
+    }
+
+    void presentDemo();
 
     return () => {
+      isDisposed = true;
       if (rendererRef.current === renderer) {
         rendererRef.current = null;
       }
-      host.replaceChildren();
+      demoHost.replaceChildren();
     };
-  }, [presentation, updateControlState]);
+  }, [presentation, updateControlState, useThreeRenderer]);
 
   if (!hasSlide && !hasCode) {
     return null;

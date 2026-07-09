@@ -1,0 +1,63 @@
+---
+sidebar_position: 3
+---
+
+import ThreeContent from "@site/src/demos/ThreeContent";
+
+# Rendering 3D
+
+:::note
+3D support in Presenter.js is new as of v0.10.0 and this documentation is not yet complete.
+:::
+
+Presenter also supports rendering 3D content (including custom 3D models) via
+Three.js. To render 3D content in Presenter.js, complete the following steps.
+
+1. Install `three` in your presentation. Presenter.js doesn't come bundled with `three` as a dependency, so you must install it yourself:
+
+```bash
+npm install three
+```
+
+2. Add the Presenter.js 3D object renderers to your presentation's `BrowserCanvasRenderer`. You can do so by adding to `objectRenderers` via:
+
+```ts
+import { getThreeObjectRenderers } from "presenter/3d";
+
+const renderer = new BrowserCanvasRenderer({
+  presentation,
+  objectRenderers: {
+    ...(await getThreeObjectRenderers(presentation)),
+  },
+});
+```
+
+3. Create a `ThreeScene` that is added as an object to a slide. The `ThreeScene` itself can include animatable objects like:
+
+- `ThreeBox`: a rectangular prism
+- `ThreeSphere`: a sphere
+- `ThreeModel`: a 3D model loaded from a file (e.g. a `.glb` file)
+  - Within the `ThreeModel`, you can specify identifiers for `ThreeModelNode`s and `ThreeModelMaterial`s that appear within the model, to give your presentation the ability to animate particular nodes or materials within the model.
+- `ThreePresenterGroup`: acts as a Presenter.js `Group` that exists in 3D space and can live in the same world as other 3D objects
+
+## Example
+
+<ThreeContent />
+
+## Notes
+
+3D rendering relies on WebGL, which is only available in browser contexts.
+Node-based rendering (e.g. rendering to PDF or rendering to images) won't
+include 3D content.
+
+To address this, Presenter.js offers two options:
+
+- Add `THREE_FALLBACK_OBJECT_RENDERERS` or
+  `THREE_POWERPOINT_FALLBACK_OBJECT_RENDERERS` to your presentation's
+  `objectRenderers` when exporting. These renderers will render a image
+  placeholder of your choice for any 3D content.
+  - You can use `installThreeSceneCaptureApi` to capture a 3D scene as an image
+    and then use that image as the placeholder. -
+- Use `BrowserImageRenderer` to render your presentation to images in a browser
+  context, which will include 3D content. This can be automated using tools like
+  Puppeteer or Playwright.
